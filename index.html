@@ -97,33 +97,41 @@
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
-          /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
-          /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-        <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-         var otherCanvas = document.getElementById('myOtherCanvas'); 
-         var otherContext = canvas.getContext("2d");
-         context.font = '20pt Calibri';
-         context.fillStyle = "black";
-         var otherContext.fillText("Transformed image will go here", 10, 20); //text so i can make sure canvas exists, also user friendly
-         otherContext.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //sticks image onto new canvas and scales it adequately
-         var imageData = otherContext.getImageData(0, 0, otherCanvas.width, otherCanvas.height); //takes this data from the second canvas
-         var data = imageData.data; //Gets rid of all the red and green only keeping blue
-         for (var i = 0; i < data.length; i += 4) {
-         data[i] = 0;     //Red
-         data[i + 1] = 0; //Green
-         }
-        otherCtx.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
-       </script>
-          /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+       /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
+       /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+ var otherCanvas = document.getElementById('myOtherCanvas'); 
+ var otherContext = otherCanvas.getContext("2d"); // use the correct canvas
+
+   otherContext.font = '20pt Calibri'; //font
+   otherContext.fillStyle = "black";
+
+         /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+         
+   otherContext.fillText("Transformed image will go here", 10, 20); // this if for me to make sure that things are showing up on the right canvas
+
+   otherContext.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); // Draw the uploaded image onto the second canvas
+
+  var imageData = otherContext.getImageData(0, 0, otherCanvas.width, otherCanvas.height); // Get the image data from the second canvas
+  var data = imageData.data; 
+//get rid of red and green channels but keep the blue
+for (var i = 0; i < data.length; i += 4) {
+  data[i] = 0;     // Red
+  data[i + 1] = 0; // Green
+  // Blue unchanged
+  // Alpha unchanged
+}
+
+// Put the modified image data back onto the second canvas
+otherContext.putImageData(imageData, 0, 0);
           
             }
-            otherContext.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
+      otherContext.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
           
-          im Data = ctx.getImageData(0, 0, 255);
+      im Data = ctx.getImageData(0, 0, 255);
           
         } // end of img.onload
         
-        img.src = reader.result;
+       img.src = reader.result;
       } //  end of reader.onload
       
       reader.readAsDataURL(file);
