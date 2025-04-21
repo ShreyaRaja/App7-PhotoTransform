@@ -97,32 +97,28 @@
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
-       /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
-       /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
- var otherCanvas = document.getElementById('myOtherCanvas'); 
- var otherContext = otherCanvas.getContext("2d"); // use the correct canvas
+      /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
+  /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  var otherCanvas = document.getElementById('myOtherCanvas'); 
+  var otherContext = otherCanvas.getContext("2d");
 
-   otherContext.font = '20pt Calibri'; //font
-   otherContext.fillStyle = "black";
+  otherContext.font = '20pt Calibri';
+  otherContext.fillStyle = "black";
+  otherContext.fillText("Transformed image will go here", 10, 20);
 
-         /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-         
-   otherContext.fillText("Transformed image will go here", 10, 20); // this if for me to make sure that things are showing up on the right canvas
+  otherContext.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
-   otherContext.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); // Draw the uploaded image onto the second canvas
-
-  var imageData = otherContext.getImageData(0, 0, otherCanvas.width, otherCanvas.height); // Get the image data from the second canvas
-  var data = imageData.data; 
-//get rid of red and green channels but keep the blue
-for (var i = 0; i < data.length; i += 4) {
-  data[i] = 0;     // Red
-  data[i + 1] = 0; // Green
-  // Blue unchanged
-  // Alpha unchanged
+  var imageData = otherContext.getImageData(0, 0, otherCanvas.width, otherCanvas.height);
+  var data = imageData.data;
+  for (var i = 0; i < data.length; i += 4) {
+    data[i] = 0;     // Red
+    data[i + 1] = 0; // Green
+    // Blue unchanged
+    // Alpha unchanged
+  }
+  otherContext.putImageData(imageData, 0, 0);
+  /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
 }
-
-// Put the modified image data back onto the second canvas
-otherContext.putImageData(imageData, 0, 0);
           
             }
       otherContext.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
