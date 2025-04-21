@@ -104,20 +104,22 @@
          var otherContext = canvas.getContext("2d");
          context.font = '20pt Calibri';
          context.fillStyle = "black";
-         context.fillText("Transformed image will go here", 10, 20); //text so i can make sure canvas exists, also user friendly
-         otherCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //sticks image onto new canvas and scales it adequately
-         var imageData = otherCtx.getImageData(0, 0, otherCanvas.width, otherCanvas.height); //takes this data from the second canvas
+         var otherContext.fillText("Transformed image will go here", 10, 20); //text so i can make sure canvas exists, also user friendly
+         otherContext.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //sticks image onto new canvas and scales it adequately
+         var imageData = otherContext.getImageData(0, 0, otherCanvas.width, otherCanvas.height); //takes this data from the second canvas
          var data = imageData.data; //Gets rid of all the red and green only keeping blue
          for (var i = 0; i < data.length; i += 4) {
-          data[i] = 0;     //Red
-          data[i + 1] = 0; //Green
+         data[i] = 0;     //Red
+         data[i + 1] = 0; //Green
          }
         otherCtx.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
        </script>
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
+            }
+            otherContext.putImageData(imageData, 0, 0); //sticks the modified image back on second canvas
           
-          imgData = ctx.getImageData(0, 0, 255);
+          im Data = ctx.getImageData(0, 0, 255);
           
         } // end of img.onload
         
@@ -156,7 +158,7 @@
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
       </script>
-     <canvas id="myOtherCanvas" width=600 height=500 style="border:9px solid #111111;"></canvas> <!--created another canvas-->
+      <canvas id="myOtherCanvas" width=600 height=500 style="border:9px solid #111111;"></canvas> <!--created another canvas-->
       
 
     </div><!-- /content -->
